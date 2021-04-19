@@ -20,21 +20,21 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /* Coleta entradas do setas/analogicos-controle */
         move = new Vector3(Input.GetAxis("Horizontal"),
                             Input.GetAxis("Vertical"), 0f);
 
         anim.SetFloat("Horizontal", move.x);
         anim.SetFloat("Vertical", move.y);
         anim.SetFloat("Speed", move.magnitude);
-        move = move.normalized;
+        move = move.normalized; /* para a diagonal não ficar rápida */
 
+        /* Player esta em movimento */
         if(move.x != 0 || move.y != 0)
         {
-            //Layer do Player Andando
-            anim.SetLayerWeight(1, 1);
-        }else{
-            //Layer do Player Parado
-            anim.SetLayerWeight(1, 0);
+            anim.SetLayerWeight(1, 1); //Layer do Player Andando
+        }else{/* Player esta parado */
+            anim.SetLayerWeight(1, 0); //Layer do Player Parado
         }
     }
 
